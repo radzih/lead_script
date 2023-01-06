@@ -1,0 +1,1 @@
+`./src/script/time.json` contains last time where request to facebook leads was sended

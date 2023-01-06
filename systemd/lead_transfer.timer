@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer for lead_transfer.service
+Requires=lead_transfer.service
+
+[Timer]
+Unit=lead_transfer.service
+OnCalendar=*-*-* 00,14:00:00
+
+[Install]
+WantedBy=timers.target

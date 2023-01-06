@@ -1,0 +1,13 @@
+[Unit]
+Description=Script that transfer leads from facebook to keycrm via api
+Wants=lead_transfer.timer
+After=network.target
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/home/radzih/Python/work/lead_script
+ExecStart=/usr/bin/poetry run python start.py
+
+[Install]
+WantedBy=multi-user.target

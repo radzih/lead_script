@@ -1,0 +1,33 @@
+[tool.black]
+line-length = 79
+
+[tool.poetry]
+name = "lead-script"
+version = "0.1.0"
+description = ""
+authors = ["Vadim Radzih <iphonevadim2003@gmail.com>"]
+readme = "README.md"
+packages = [{include = "lead_script"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+facebook-business = "^15.0.0"
+python-dotenv = "^0.21.0"
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+isort = "^5.10.1"
+pep8-naming = "^0.13.2"
+black = "^22.10.0"
+mypy = "^0.991"
+flake8-bugbear = "^22.12.6"
+flake8-builtins = "^2.0.1"
+flake8-spellcheck = "^0.28.0"
+flake8-comprehensions = "^3.10.1"
+flake8-commas = "^2.1.0"
+flake8-quotes = "^3.3.1"
+pytest = "^7.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

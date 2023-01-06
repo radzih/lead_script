@@ -1,0 +1,13 @@
+[flake8]
+
+max-line-length = 79
+
+max-complexity = 10
+
+inline-quotes = double
+
+builtins-ignorelist = id, next
+
+exclude = **/alembic/versions/**
+
+ignore = B008

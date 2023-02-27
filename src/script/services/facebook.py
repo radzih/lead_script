@@ -44,6 +44,11 @@ def get_ad_leads(ad: Ad) -> list[Lead]:
                 "operator": "GREATER_THAN",
                 "value": get_last_update_time(),
             },
+            {
+                "field": "time_created",
+                "operator": "LESS_THAN",
+                "value": get_next_update_time(),
+            },
         ],
     }
     ad_leads: list[Lead] = ad.get_leads(
@@ -99,6 +104,7 @@ def get_new_leads_with_form_id(
     adaccount: AdAccount,
     form_ids: list[int],
 ) -> list[LeadDTO]:
+    save_next_update_time()
     leads = get_all_new_leads(adaccount)
     filtered_leads = filter_leads_by_form_id(leads, form_ids)
 
@@ -111,10 +117,25 @@ def get_new_leads_with_form_id(
 
 def save_last_update_time() -> None:
     with open("./src/script/time.json", "w") as file:
-        json.dump(obj={"last_request_time": int(time.time())}, fp=file)
+        data = json.load(file)
+        data["last_request_time"] = data["next_request_time"]
+        json.dump(obj=data, fp=file)
+
+
+def save_next_update_time() -> None:
+    with open("./src/script/time.json", "w") as file:
+        data = json.load(file)
+        data["next_request_time"] = int(time.time()) 
+        json.dump(obj=data, fp=file)
 
 
 def get_last_update_time() -> int:
     with open("./src/script/time.json", "r") as file:
         data = json.load(file)
     return int(data["last_request_time"])
+
+
+def get_next_update_time() -> int:
+    with open("./src/script/time.json", "r") as file:
+        data = json.load(file)
+    return int(data["next_request_time"])
